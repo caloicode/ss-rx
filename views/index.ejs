@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="framework.css" />
+    <link rel="stylesheet" href="style-2.css" />
+    <title>SS Rx</title>
+  </head>
+
+  <body>
+    <% if(locals.name){ %>
+    <a href="/">Back</a>
+    <h1>Hello <%=name%>!</h1>
+    <p>SS Rx</p>
+    <a href="<%=`/capture?url=http://localhost:${port}/print`%>">Print</a>
+    <% } else { %>
+    <h1>Hello World!</h1>
+    <p>SS Rx</p>
+    <form action="/post" method="post">
+      <input type="text" name="name" autofocus />
+    </form>
+    <% } %>
+
+    <script src="script.js"></script>
+  </body>
+</html>
