@@ -1,27 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="framework.css" />
-    <link rel="stylesheet" href="style-2.css" />
-    <title>SS Rx</title>
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription Pad</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        window.onload = function () {
+            var currentDate = new Date().toISOString().split('T')[0];
+            document.getElementById('date').value = currentDate;
+        };
+    </script>
+</head>
+<body>
 
-  <body>
-    <% if(locals.name){ %>
-    <a href="/">Back</a>
-    <h1>Hello <%=name%>!</h1>
-    <p>SS Rx</p>
-    <a href="<%=`/capture?url=http://localhost:${port}/print`%>">Print</a>
-    <% } else { %>
-    <h1>Hello World!</h1>
-    <p>SS Rx</p>
     <form action="/post" method="post">
-      <input type="text" name="name" autofocus />
-    </form>
-    <% } %>
+        <h2>Prescription Pad</h2>
 
-    <script src="script.js"></script>
-  </body>
+        <!-- Patient name and date in the same div with flex direction row -->
+        <div class="flex-container">
+            <div>
+                <label for="patientName">Patient Name:</label>
+                <input type="text" id="patientName" name="patientName" autocomplete="off">
+            </div>
+            
+            <div>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date">
+            </div>
+        </div>
+
+        <!-- Address block -->
+        <div>
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="2"></textarea>
+        </div>
+
+        <!-- Age on the last line -->
+        <div>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age">
+        </div>
+
+        <!-- Rx textarea with increased size -->
+        <div>
+            <label for="rx">Prescription (Rx):</label>
+            <textarea id="rx" name="rx" rows="8" required spellcheck="off"></textarea>
+        </div>
+
+        <input type="submit" value="Preview">
+    </form>
+
+</body>
 </html>
